@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>NoPose-NeuS | Mohamed Shawky Sabae</title>
+    <meta name="description" content="NoPose-NeuS: Jointly Optimizing Camera Poses with Neural Implicit Surfaces." />
+    <meta name="author" content="Mohamed Shawky Sabae" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/minimalist.css" />
+    <link rel="icon" type="image/png" href="../assets/images/favicon.ico" />
+  </head>
+  <body class="paper-page">
+    <main class="paper-shell">
+      <nav class="paper-topline">
+        <a href="../index.html#publications">Mohamed Shawky Sabae</a>
+        <a href="../index.html#publications">Publications</a>
+      </nav>
+
+      <header class="paper-header">
+        <h1>NoPose-NeuS: Jointly Optimizing Camera Poses with Neural Implicit Surfaces</h1>
+        <p class="paper-authors">
+          <strong class="author-self">Mohamed Shawky Sabae</strong>,
+          <a class="author-link" href="https://scholar.google.com/citations?user=i1qvgx4AAAAJ&hl=en" target="_blank" rel="noopener">Hoda Anis Baraka</a>,
+          <a class="author-link" href="https://scholar.google.com/citations?user=38yr_I8AAAAJ&hl=en" target="_blank" rel="noopener">Mayada Mansour Hadhoud</a>
+        </p>
+        <p class="paper-affiliations">
+          Faculty of Engineering, Cairo University
+        </p>
+        <p class="paper-venue">NeurIPS 2023 UniReps Workshop</p>
+        <div class="paper-links">
+          <a href="https://arxiv.org/abs/2312.15238" target="_blank" rel="noopener"><i class="far fa-file-pdf" aria-hidden="true"></i> Paper</a>
+          <a href="nopose-neus.html"><i class="far fa-file-alt" aria-hidden="true"></i> Extended Paper</a>
+          <a href="https://github.com/DarkGeekMS/bundle-adjusting-neus" target="_blank" rel="noopener"><i class="fas fa-code" aria-hidden="true"></i> Code</a>
+        </div>
+      </header>
+
+      <figure class="paper-figure hero-figure">
+        <img src="../assets/images/projects/nopose-neus/architecture.png" alt="NoPose-NeuS architecture diagram" />
+      </figure>
+
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p>
+          Neural implicit surface methods can recover difficult geometry, including thin structures
+          and non-Lambertian surfaces, but they usually assume accurate camera parameters. NoPose-NeuS
+          relaxes that assumption by extending NeuS to optimize camera poses together with the
+          geometry and color networks.
+        </p>
+        <p>
+          The paper represents camera poses with an MLP and adds multi-view feature consistency plus
+          rendered depth supervision. These constraints help the method estimate camera poses while
+          preserving high-quality reconstructed surfaces.
+        </p>
+      </section>
+
+      <section id="method">
+        <h2>Method</h2>
+        <div class="method-cards">
+          <article>
+            <h3>Joint Optimization</h3>
+            <p>
+              Camera poses are optimized with the SDF geometry and color networks instead of being
+              treated as fixed inputs.
+            </p>
+          </article>
+          <article>
+            <h3>Pose MLP</h3>
+            <p>
+              Each camera index is mapped through Gaussian Fourier features, then decoded by an MLP
+              into rotation and translation parameters.
+            </p>
+          </article>
+          <article>
+            <h3>Geometry Constraints</h3>
+            <p>
+              Multi-view feature consistency and rendered depth loss guide the pose estimates and
+              reduce degenerate surface solutions.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="object-results">
+        <h2>Object-Level Results</h2>
+        <p>
+          The paper reports that NoPose-NeuS preserves competitive surface quality while estimating
+          camera poses, and it outperforms COLMAP on most DTU Chamfer-distance comparisons.
+        </p>
+        <div class="comparison-stack">
+          <article class="comparison-set">
+            <h3>DTU Scan 24</h3>
+            <div class="comparison-grid four-col">
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/dtu/scan24/rgb.png" alt="DTU scan 24 reference RGB" />
+                <figcaption>Reference RGB</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/dtu/scan24/nopose-neus.png" alt="DTU scan 24 NoPose-NeuS result" />
+                <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/dtu/scan24/neus.png" alt="DTU scan 24 NeuS result" />
+                <figcaption>NeuS</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/dtu/scan24/colmap.png" alt="DTU scan 24 COLMAP result" />
+                <figcaption>COLMAP</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="comparison-set">
+            <h3>DTU Scan 37</h3>
+            <div class="comparison-grid four-col">
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/dtu/scan37/rgb.png" alt="DTU scan 37 reference RGB" />
+                <figcaption>Reference RGB</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/dtu/scan37/nopose-neus.png" alt="DTU scan 37 NoPose-NeuS result" />
+                <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/dtu/scan37/neus.png" alt="DTU scan 37 NeuS result" />
+                <figcaption>NeuS</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/dtu/scan37/colmap.png" alt="DTU scan 37 COLMAP result" />
+                <figcaption>COLMAP</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="comparison-set">
+            <h3>BMVS Bear</h3>
+            <div class="comparison-grid four-col">
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/bmvs/bear/rgb.png" alt="BMVS bear reference RGB" />
+                <figcaption>Reference RGB</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/bmvs/bear/nopose-neus.png" alt="BMVS bear NoPose-NeuS result" />
+                <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/bmvs/bear/neus.png" alt="BMVS bear NeuS result" />
+                <figcaption>NeuS</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/bmvs/bear/colmap.png" alt="BMVS bear COLMAP result" />
+                <figcaption>COLMAP</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="comparison-set">
+            <h3>BMVS Dog</h3>
+            <div class="comparison-grid four-col">
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/bmvs/dog/rgb.png" alt="BMVS dog reference RGB" />
+                <figcaption>Reference RGB</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/bmvs/dog/nopose-neus.png" alt="BMVS dog NoPose-NeuS result" />
+                <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/bmvs/dog/neus.png" alt="BMVS dog NeuS result" />
+                <figcaption>NeuS</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/images/projects/nopose-neus/results/bmvs/dog/colmap.png" alt="BMVS dog COLMAP result" />
+                <figcaption>COLMAP</figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="scene-results">
+        <h2>Scene-Level Results</h2>
+        <p>
+          On larger scenes, the same optimization idea is used to recover surfaces without relying
+          on precomputed accurate camera poses.
+        </p>
+        <div class="comparison-grid two-col">
+          <figure>
+            <img src="../assets/images/projects/nopose-neus/results/scannet/nopose-neus.png" alt="ScanNet NoPose-NeuS result" />
+            <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/images/projects/nopose-neus/results/scannet/monosdf.png" alt="ScanNet MonoSDF result" />
+            <figcaption>MonoSDF</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="bibtex">
+        <h2>BibTeX</h2>
+        <pre><code>@inproceedings{
+sabae2023noposeneus,
+title={NoPose-NeuS: Jointly Optimizing Camera Poses with Neural Implicit Surfaces for Multi-view Reconstruction},
+author={Mohamed Shawky Sabae and Hoda A. Baraka and Mayada Hadhoud},
+booktitle={UniReps:  the First Workshop on Unifying Representations in Neural Models},
+year={2023},
+url={https://openreview.net/forum?id=TOp8uT3DZ9}
+}</code></pre>
+      </section>
+    </main>
+  </body>
+</html>
