@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>AEGIR | Mohamed Shawky Sabae</title>
-    <meta name="description" content="AEGIR models explicit area emitters for indoor inverse rendering with Gaussian Splatting." />
+    <meta name="description" content="AEGIR: models explicit area emitters for indoor inverse rendering Using Gaussian Splatting." />
     <meta name="author" content="Mohamed Shawky Sabae" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../assets/css/minimalist.css?v=20260611-nav" />
+    <link rel="stylesheet" href="../../assets/css/minimalist.css?v=20260612-project-trim" />
     <link rel="icon" type="image/svg+xml" href="../../assets/images/icon.svg" />
   </head>
   <body class="paper-page">
@@ -22,7 +22,7 @@
       </nav>
 
       <header class="paper-header">
-        <h1>AEGIR: Modeling Area Emitters for Indoor Inverse Rendering using Gaussian Splatting</h1>
+        <h1>AEGIR: Modeling Area Emitters for Indoor Inverse Rendering Using Gaussian Splatting</h1>
         <p class="paper-authors">
           <strong class="author-self">Mohamed Shawky Sabae</strong>,
           <a class="author-link" href="https://graphics.cs.uni-tuebingen.de/team/person?name=Philipp%20Langsteiner" target="_blank" rel="noopener">Philipp Langsteiner</a>,
@@ -30,9 +30,9 @@
           <a class="author-link" href="https://graphics.cs.uni-tuebingen.de/team/person?name=Hendrik%20Lensch" target="_blank" rel="noopener">Hendrik Lensch</a>
         </p>
         <p class="paper-affiliations">
-          Computer Graphics Group, Eberhard Karls University of T&uuml;bingen
+          <i class="fas fa-university" aria-hidden="true"></i> Computer Graphics Group, Eberhard Karls University of T&uuml;bingen
         </p>
-        <p class="paper-venue">arXiv preprint, 2026</p>
+        <p class="paper-venue"><i class="fas fa-award" aria-hidden="true"></i> arXiv preprint, 2026</p>
         <div class="paper-links">
           <span class="is-disabled"><i class="far fa-file-pdf" aria-hidden="true"></i> Paper</span>
           <span class="is-disabled"><i class="fas fa-code" aria-hidden="true"></i> Code</span>
@@ -42,7 +42,7 @@
       <figure class="paper-figure hero-figure">
         <img src="../../assets/images/projects/aegir/paper/aegir-teaser.png" alt="AEGIR paper overview figure" />
         <figcaption>
-          From multi-view images, AEGIR jointly models local area emitters, geometry, and materials for novel view synthesis, relighting, and virtual object insertion.
+          AEGIR jointly models local area emitters, geometry, and materials from multi-view images for novel view synthesis, relighting, and virtual object insertion.
         </figcaption>
       </figure>
 
@@ -110,6 +110,7 @@
           The Super-Gaussian falloff controls how sharply radiance decays away from the main emission direction,
           which lets a single primitive adapt between broad diffuse lights and focused directional sources.
         </p>
+        <h3 class="figure-group-title">Emitter Parameterization</h3>
         <div class="comparison-grid two-col">
           <figure>
             <img src="../../assets/images/projects/aegir/paper/aegir-emitter-parameters.png" alt="Effect of AEGIR area emitter parameters" />
@@ -125,15 +126,16 @@
       <section id="lighting">
         <h2>Lighting Estimation</h2>
         <p>
-          The paper evaluates estimated lighting in a controlled Mitsuba pipeline by fixing ground-truth
+          AEGIR evaluates estimated lighting in a controlled Mitsuba pipeline by fixing ground-truth
           geometry and materials, then re-rendering each scene with the recovered lights. This isolates lighting
           errors from geometry, material, and denoising artifacts. AEGIR best matches the indoor reference and
           recovers smoother, more physically plausible illumination than point-light or environment-map baselines.
         </p>
+        <h3 class="figure-group-title">Lighting Reconstruction</h3>
         <div class="comparison-grid four-col landscape-grid">
           <figure>
             <img src="../../assets/images/projects/aegir/emitters/original-living-indoor.png" alt="Ground truth lighting reference for AEGIR" />
-            <figcaption>Reference</figcaption>
+            <figcaption>Reference / GT</figcaption>
           </figure>
           <figure>
             <img src="../../assets/images/projects/aegir/emitters/aegir-living-indoor.png" alt="AEGIR lighting estimation result" />
@@ -201,12 +203,12 @@
       <section id="results">
         <h2>Novel View Synthesis and Decomposition</h2>
         <p>
-          Across ScanNet++, Replica, and FIPT-Real, AEGIR reports the best real-world NVS scores in the paper:
+          Across ScanNet++, Replica, and FIPT-Real, AEGIR reports the best real-world NVS scores:
           18.55 PSNR on ScanNet++, 17.93 on Replica, and 22.07 on FIPT-Real. On synthetic benchmarks, the method
           also improves albedo recovery, showing that explicit area emitters reduce the tendency to absorb
           residual illumination into material maps.
         </p>
-        <figure class="paper-figure wide-figure">
+        <figure class="paper-figure wide-figure plot-figure">
           <img src="../../assets/images/projects/aegir/albedo-vs-render-psnr.png" alt="AEGIR albedo versus render PSNR plot" />
           <figcaption>
             AEGIR improves both material accuracy and novel view synthesis, avoiding the common trade-off between rendering quality and albedo decomposition.
@@ -221,18 +223,19 @@
           The recovered decomposition enables controlled relighting and more plausible virtual object insertion
           under local indoor illumination.
         </p>
+        <h3 class="figure-group-title">Editing Applications</h3>
         <div class="paper-gallery">
           <figure>
-            <img src="../../assets/images/projects/aegir/livingroom-render.png" alt="AEGIR living room render" />
-            <figcaption>Living room render</figcaption>
+            <img src="../../assets/images/projects/aegir/livingroom-render.png" alt="AEGIR Livingroom render" />
+            <figcaption>Livingroom render</figcaption>
           </figure>
           <figure>
-            <img src="../../assets/images/projects/aegir/livingroom-relight.png" alt="AEGIR living room relighting" />
-            <figcaption>Living room relighting</figcaption>
+            <img src="../../assets/images/projects/aegir/livingroom-relight.png" alt="AEGIR Livingroom relighting" />
+            <figcaption>Livingroom relighting</figcaption>
           </figure>
           <figure>
-            <img src="../../assets/images/projects/aegir/livingroom-insertion.png" alt="AEGIR living room object insertion" />
-            <figcaption>Living room insertion</figcaption>
+            <img src="../../assets/images/projects/aegir/livingroom-insertion.png" alt="AEGIR Livingroom object insertion" />
+            <figcaption>Livingroom insertion</figcaption>
           </figure>
           <figure>
             <img src="../../assets/images/projects/aegir/office2-render.png" alt="AEGIR office render" />
@@ -254,5 +257,6 @@
         <pre><code></code></pre>
       </section>
     </main>
+    <script src="../../assets/js/project-pages.js?v=20260612-project-trim" defer></script>
   </body>
 </html>
