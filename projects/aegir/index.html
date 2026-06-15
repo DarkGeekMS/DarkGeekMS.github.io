@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>AEGIR | Mohamed Shawky Sabae</title>
-    <meta name="description" content="AEGIR: models explicit area emitters for indoor inverse rendering Using Gaussian Splatting." />
+    <meta name="description" content="AEGIR models explicit area emitters for indoor inverse rendering using Gaussian Splatting." />
     <meta name="author" content="Mohamed Shawky Sabae" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../assets/css/minimalist.css?v=20260612-project-trim" />
+    <link rel="stylesheet" href="../../assets/css/minimalist.css?v=20260615-final-text" />
     <link rel="icon" type="image/svg+xml" href="../../assets/images/icon.svg" />
   </head>
   <body class="paper-page">
@@ -39,37 +39,36 @@
         </div>
       </header>
 
-      <figure class="paper-figure hero-figure">
-        <img src="../../assets/images/projects/aegir/paper/aegir-teaser.png" alt="AEGIR paper overview figure" />
+      <figure class="paper-figure hero-figure video-figure">
+        <video controls autoplay muted loop playsinline preload="metadata" aria-label="AEGIR teaser video">
+          <source src="../../assets/images/projects/aegir/aegir_full_teaser.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <figcaption>
-          AEGIR jointly models local area emitters, geometry, and materials from multi-view images for novel view synthesis, relighting, and virtual object insertion.
+          AEGIR recovers area emitters, geometry, and materials for novel view synthesis, relighting, and object insertion.
         </figcaption>
       </figure>
 
       <section id="abstract">
         <h2>Abstract</h2>
         <p>
-          Inverse rendering separates illumination from surface materials, but the two are tightly coupled
-          in captured images. Existing relightable Gaussian Splatting methods usually approximate lighting
-          with point lights, global environment maps, or implicit light fields; these choices struggle with
-          indoor emitters that have finite spatial extent and cast soft, localized shadows.
+          Inverse rendering must separate illumination from surface materials, but indoor images tightly couple
+          the two. Existing relightable Gaussian Splatting methods often use point lights, environment maps, or
+          implicit light fields, which struggle with finite-area emitters and soft local shadows.
         </p>
         <p>
-          AEGIR explicitly models local area emitters inside a relightable Gaussian Splatting representation.
-          The method jointly optimizes emitters, geometry, and physically based materials using a differentiable
-          deferred renderer with multiple importance sampling and targeted regularization. This improves
-          illumination reconstruction and supports downstream editing tasks such as controlled relighting and
-          virtual object insertion.
+          AEGIR adds explicit local area emitters to a relightable Gaussian Splatting representation. It jointly
+          optimizes emitters, geometry, and PBR materials with a differentiable deferred renderer, improving
+          lighting reconstruction and enabling controlled scene edits.
         </p>
       </section>
 
       <section id="method">
         <h2>Method</h2>
         <p>
-          The core idea is to make the light sources geometric. AEGIR represents indoor emitters as localized
-          anisotropic 3D primitives with learnable shape, color, orientation, spatial scale, and angular
-          emission profile. These parameters are optimized together with 2D Gaussian geometry and PBR material
-          maps, so lighting can explain shadows and highlights instead of being baked into albedo.
+          AEGIR represents indoor light sources as localized anisotropic 3D primitives with learnable shape,
+          color, orientation, scale, and angular emission. Optimizing these emitters with 2D Gaussian geometry
+          and PBR materials lets lighting explain shadows and highlights instead of baking them into albedo.
         </p>
         <div class="method-cards">
           <article>
@@ -82,8 +81,8 @@
           <article>
             <h3>Deferred Rendering</h3>
             <p>
-              A G-buffer stores albedo, roughness, metallic, and normals; illumination is evaluated with a
-              microfacet BRDF, direct emitter samples, hemisphere samples, and visibility tracing.
+              A deferred G-buffer stores albedo, roughness, metallic, and normals; illumination uses a microfacet
+              BRDF, emitter samples, hemisphere samples, and visibility tracing.
             </p>
           </article>
           <article>
@@ -106,9 +105,8 @@
       <section id="area-emitters">
         <h2>Area Emitter Formulation</h2>
         <p>
-          AEGIR uses ellipsoidal emitters with independent spatial scales and angular spread coefficients.
-          The Super-Gaussian falloff controls how sharply radiance decays away from the main emission direction,
-          which lets a single primitive adapt between broad diffuse lights and focused directional sources.
+          AEGIR uses ellipsoidal emitters with independent spatial scales and angular spread. A Super-Gaussian
+          falloff lets one primitive adapt between broad diffuse lights and focused directional sources.
         </p>
         <h3 class="figure-group-title">Emitter Parameterization</h3>
         <div class="comparison-grid two-col">
@@ -126,30 +124,57 @@
       <section id="lighting">
         <h2>Lighting Estimation</h2>
         <p>
-          AEGIR evaluates estimated lighting in a controlled Mitsuba pipeline by fixing ground-truth
-          geometry and materials, then re-rendering each scene with the recovered lights. This isolates lighting
-          errors from geometry, material, and denoising artifacts. AEGIR best matches the indoor reference and
-          recovers smoother, more physically plausible illumination than point-light or environment-map baselines.
+          AEGIR evaluates lighting in a controlled Mitsuba pipeline by fixing ground-truth geometry and materials,
+          then re-rendering each scene with recovered lights. Across indoor and environment lighting, AEGIR best
+          matches the reference render and recovers smoother illumination than point-light or environment-map baselines.
         </p>
         <h3 class="figure-group-title">Lighting Reconstruction</h3>
-        <div class="comparison-grid four-col landscape-grid">
-          <figure>
-            <img src="../../assets/images/projects/aegir/emitters/original-living-indoor.png" alt="Ground truth lighting reference for AEGIR" />
-            <figcaption>Reference / GT</figcaption>
-          </figure>
-          <figure>
-            <img src="../../assets/images/projects/aegir/emitters/aegir-living-indoor.png" alt="AEGIR lighting estimation result" />
-            <figcaption><strong>AEGIR (ours)</strong></figcaption>
-          </figure>
-          <figure>
-            <img src="../../assets/images/projects/aegir/emitters/gsid-living-indoor.png" alt="GS-ID lighting estimation result" />
-            <figcaption>GS-ID</figcaption>
-          </figure>
-          <figure>
-            <img src="../../assets/images/projects/aegir/emitters/irgs-living-indoor.png" alt="IRGS lighting estimation result" />
-            <figcaption>IRGS</figcaption>
-          </figure>
+        <div class="matrix-scroll">
+          <div class="lighting-matrix">
+            <span class="matrix-corner" aria-hidden="true"></span>
+            <span class="matrix-head">Reference / GT</span>
+            <span class="matrix-head"><strong>AEGIR (ours)</strong></span>
+            <span class="matrix-head">GS-ID</span>
+            <span class="matrix-head">IRGS</span>
+
+            <span class="matrix-row-label">Indoor</span>
+            <figure>
+              <img src="../../assets/images/projects/aegir/emitters/original-living-indoor.png" alt="Ground-truth indoor lighting reference" />
+            </figure>
+            <figure class="inset-figure">
+              <img src="../../assets/images/projects/aegir/emitters/aegir-living-indoor.png" alt="AEGIR indoor lighting estimation result" />
+              <img class="lighting-inset" src="../../assets/images/projects/aegir/emitters/aegir-living-indoor-light.png" alt="AEGIR indoor direct illumination inset" />
+            </figure>
+            <figure class="inset-figure">
+              <img src="../../assets/images/projects/aegir/emitters/gsid-living-indoor.png" alt="GS-ID indoor lighting estimation result" />
+              <img class="lighting-inset" src="../../assets/images/projects/aegir/emitters/gsid-living-indoor-light.png" alt="GS-ID indoor direct illumination inset" />
+            </figure>
+            <figure class="inset-figure">
+              <img src="../../assets/images/projects/aegir/emitters/irgs-living-indoor.png" alt="IRGS indoor lighting estimation result" />
+              <img class="lighting-inset" src="../../assets/images/projects/aegir/emitters/irgs-living-indoor-light.png" alt="IRGS indoor direct illumination inset" />
+            </figure>
+
+            <span class="matrix-row-label">Environment</span>
+            <figure>
+              <img src="../../assets/images/projects/aegir/emitters/original-bed-env.png" alt="Ground-truth environment lighting reference" />
+            </figure>
+            <figure class="inset-figure">
+              <img src="../../assets/images/projects/aegir/emitters/aegir-bed-env.png" alt="AEGIR environment lighting estimation result" />
+              <img class="lighting-inset" src="../../assets/images/projects/aegir/emitters/aegir-bed-env-light.png" alt="AEGIR environment direct illumination inset" />
+            </figure>
+            <figure class="inset-figure">
+              <img src="../../assets/images/projects/aegir/emitters/gsid-bed-env.png" alt="GS-ID environment lighting estimation result" />
+              <img class="lighting-inset" src="../../assets/images/projects/aegir/emitters/gsid-bed-env-light.png" alt="GS-ID environment direct illumination inset" />
+            </figure>
+            <figure class="inset-figure">
+              <img src="../../assets/images/projects/aegir/emitters/irgs-bed-env.png" alt="IRGS environment lighting estimation result" />
+              <img class="lighting-inset" src="../../assets/images/projects/aegir/emitters/irgs-bed-env-light.png" alt="IRGS environment direct illumination inset" />
+            </figure>
+          </div>
         </div>
+        <p class="figure-note">
+          Direct illumination insets show the recovered shading map for each estimated lighting representation.
+        </p>
         <div class="paper-table">
           <table>
             <thead>
@@ -200,53 +225,228 @@
         </div>
       </section>
 
-      <section id="results">
-        <h2>Novel View Synthesis and Decomposition</h2>
+      <section id="intrinsic-decomposition">
+        <h2>Novel View Synthesis and Intrinsic Decomposition</h2>
         <p>
-          Across ScanNet++, Replica, and FIPT-Real, AEGIR reports the best real-world NVS scores:
-          18.55 PSNR on ScanNet++, 17.93 on Replica, and 22.07 on FIPT-Real. On synthetic benchmarks, the method
-          also improves albedo recovery, showing that explicit area emitters reduce the tendency to absorb
-          residual illumination into material maps.
+          Across ScanNet++, Replica, and FIPT-Real, AEGIR reports the best real-world NVS scores. On synthetic
+          benchmarks, it also improves albedo recovery, showing that explicit emitters reduce illumination
+          leakage into material maps.
         </p>
         <figure class="paper-figure wide-figure plot-figure">
-          <img src="../../assets/images/projects/aegir/albedo-vs-render-psnr.png" alt="AEGIR albedo versus render PSNR plot" />
+          <img src="../../assets/images/projects/aegir/materials/albedo-vs-render-psnr.png" alt="AEGIR albedo versus render PSNR plot" />
           <figcaption>
-            AEGIR improves both material accuracy and novel view synthesis, avoiding the common trade-off between rendering quality and albedo decomposition.
+            AEGIR improves material accuracy and novel view synthesis without the usual rendering/decomposition trade-off.
           </figcaption>
         </figure>
+        <p>
+          The real-world comparisons below follow the appendix layout: the left column shows the ground-truth RGB
+          view, and the remaining columns compare render, albedo, roughness, and metallic maps.
+        </p>
+        <h3 class="figure-group-title">Qualitative Intrinsic Comparison</h3>
+        <div class="intrinsic-comparisons">
+          <article>
+            <h4>Classroom</h4>
+            <div class="matrix-scroll">
+              <table class="intrinsic-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Property</th>
+                    <th scope="col">Reference</th>
+                    <th scope="col"><strong>AEGIR (ours)</strong></th>
+                    <th scope="col">GS-ID</th>
+                    <th scope="col">IRGS</th>
+                    <th scope="col">IRIS</th>
+                    <th scope="col">NeILF++</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Render</th>
+                    <td rowspan="4" class="reference-cell">
+                      <figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/rgb.png" alt="Classroom ground-truth RGB reference" /></figure>
+                    </td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/aegir/rgb.png" alt="Classroom AEGIR render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/gsid/rgb.png" alt="Classroom GS-ID render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/irgs/rgb.png" alt="Classroom IRGS render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/iris/rgb.png" alt="Classroom IRIS render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/neilfpp/rgb.png" alt="Classroom NeILF++ render" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Albedo</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/aegir/albedo.png" alt="Classroom AEGIR albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/gsid/albedo.png" alt="Classroom GS-ID albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/irgs/albedo.png" alt="Classroom IRGS albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/iris/albedo.png" alt="Classroom IRIS albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/neilfpp/albedo.png" alt="Classroom NeILF++ albedo" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Roughness</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/aegir/rough.png" alt="Classroom AEGIR roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/gsid/rough.png" alt="Classroom GS-ID roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/irgs/rough.png" alt="Classroom IRGS roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/iris/rough.png" alt="Classroom IRIS roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/neilfpp/rough.png" alt="Classroom NeILF++ roughness" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Metallic</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/aegir/metal.png" alt="Classroom AEGIR metallic" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/gsid/metal.png" alt="Classroom GS-ID metallic" /></figure></td>
+                    <td class="na-cell">N/A</td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/iris/metal.png" alt="Classroom IRIS metallic" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/classroom/neilfpp/metal.png" alt="Classroom NeILF++ metallic" /></figure></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article>
+            <h4>Living Room</h4>
+            <div class="matrix-scroll">
+              <table class="intrinsic-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Property</th>
+                    <th scope="col">Reference</th>
+                    <th scope="col"><strong>AEGIR (ours)</strong></th>
+                    <th scope="col">GS-ID</th>
+                    <th scope="col">IRGS</th>
+                    <th scope="col">IRIS</th>
+                    <th scope="col">NeILF++</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Render</th>
+                    <td rowspan="4" class="reference-cell">
+                      <figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/rgb.png" alt="Living room ground-truth RGB reference" /></figure>
+                    </td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/aegir/rgb.png" alt="Living room AEGIR render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/gsid/rgb.png" alt="Living room GS-ID render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/irgs/rgb.png" alt="Living room IRGS render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/iris/rgb.png" alt="Living room IRIS render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/neilfpp/rgb.png" alt="Living room NeILF++ render" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Albedo</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/aegir/albedo.png" alt="Living room AEGIR albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/gsid/albedo.png" alt="Living room GS-ID albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/irgs/albedo.png" alt="Living room IRGS albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/iris/albedo.png" alt="Living room IRIS albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/neilfpp/albedo.png" alt="Living room NeILF++ albedo" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Roughness</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/aegir/rough.png" alt="Living room AEGIR roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/gsid/rough.png" alt="Living room GS-ID roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/irgs/rough.png" alt="Living room IRGS roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/iris/rough.png" alt="Living room IRIS roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/neilfpp/rough.png" alt="Living room NeILF++ roughness" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Metallic</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/aegir/metal.png" alt="Living room AEGIR metallic" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/gsid/metal.png" alt="Living room GS-ID metallic" /></figure></td>
+                    <td class="na-cell">N/A</td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/iris/metal.png" alt="Living room IRIS metallic" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/livingroom/neilfpp/metal.png" alt="Living room NeILF++ metallic" /></figure></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article>
+            <h4>Office 4</h4>
+            <div class="matrix-scroll">
+              <table class="intrinsic-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Property</th>
+                    <th scope="col">Reference</th>
+                    <th scope="col"><strong>AEGIR (ours)</strong></th>
+                    <th scope="col">GS-ID</th>
+                    <th scope="col">IRGS</th>
+                    <th scope="col">IRIS</th>
+                    <th scope="col">NeILF++</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Render</th>
+                    <td rowspan="4" class="reference-cell">
+                      <figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/rgb.png" alt="Office 4 ground-truth RGB reference" /></figure>
+                    </td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/aegir/rgb.png" alt="Office 4 AEGIR render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/gsid/rgb.png" alt="Office 4 GS-ID render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/irgs/rgb.png" alt="Office 4 IRGS render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/iris/rgb.png" alt="Office 4 IRIS render" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/neilfpp/rgb.png" alt="Office 4 NeILF++ render" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Albedo</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/aegir/albedo.png" alt="Office 4 AEGIR albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/gsid/albedo.png" alt="Office 4 GS-ID albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/irgs/albedo.png" alt="Office 4 IRGS albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/iris/albedo.png" alt="Office 4 IRIS albedo" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/neilfpp/albedo.png" alt="Office 4 NeILF++ albedo" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Roughness</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/aegir/rough.png" alt="Office 4 AEGIR roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/gsid/rough.png" alt="Office 4 GS-ID roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/irgs/rough.png" alt="Office 4 IRGS roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/iris/rough.png" alt="Office 4 IRIS roughness" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/neilfpp/rough.png" alt="Office 4 NeILF++ roughness" /></figure></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Metallic</th>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/aegir/metal.png" alt="Office 4 AEGIR metallic" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/gsid/metal.png" alt="Office 4 GS-ID metallic" /></figure></td>
+                    <td class="na-cell">N/A</td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/iris/metal.png" alt="Office 4 IRIS metallic" /></figure></td>
+                    <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/office4/neilfpp/metal.png" alt="Office 4 NeILF++ metallic" /></figure></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+        <p class="figure-note">
+          Rows compare render, albedo, roughness, and metallic outputs across methods. N/A indicates a property not produced by a method.
+        </p>
       </section>
 
       <section id="applications">
         <h2>Applications</h2>
         <p>
-          Because lighting is represented as editable geometric emitters, AEGIR supports direct scene edits.
-          The recovered decomposition enables controlled relighting and more plausible virtual object insertion
-          under local indoor illumination.
+          Because lighting is represented as editable geometric emitters, AEGIR supports controlled relighting
+          and more plausible virtual object insertion under local indoor illumination.
         </p>
         <h3 class="figure-group-title">Editing Applications</h3>
         <div class="paper-gallery">
           <figure>
-            <img src="../../assets/images/projects/aegir/livingroom-render.png" alt="AEGIR Livingroom render" />
-            <figcaption>Livingroom render</figcaption>
+            <img src="../../assets/images/projects/aegir/demos/livingroom-render.png" alt="AEGIR living room render" />
+            <figcaption>Living room render</figcaption>
           </figure>
           <figure>
-            <img src="../../assets/images/projects/aegir/livingroom-relight.png" alt="AEGIR Livingroom relighting" />
-            <figcaption>Livingroom relighting</figcaption>
+            <img src="../../assets/images/projects/aegir/demos/livingroom-relight.png" alt="AEGIR living room relighting" />
+            <figcaption>Living room relighting</figcaption>
           </figure>
           <figure>
-            <img src="../../assets/images/projects/aegir/livingroom-insertion.png" alt="AEGIR Livingroom object insertion" />
-            <figcaption>Livingroom insertion</figcaption>
+            <img src="../../assets/images/projects/aegir/demos/livingroom-insertion.png" alt="AEGIR living room object insertion" />
+            <figcaption>Living room insertion</figcaption>
           </figure>
           <figure>
-            <img src="../../assets/images/projects/aegir/office2-render.png" alt="AEGIR office render" />
+            <img src="../../assets/images/projects/aegir/demos/office2-render.png" alt="AEGIR office render" />
             <figcaption>Office render</figcaption>
           </figure>
           <figure>
-            <img src="../../assets/images/projects/aegir/office2-relight.png" alt="AEGIR office relighting" />
+            <img src="../../assets/images/projects/aegir/demos/office2-relight.png" alt="AEGIR office relighting" />
             <figcaption>Office relighting</figcaption>
           </figure>
           <figure>
-            <img src="../../assets/images/projects/aegir/office2-insertion.png" alt="AEGIR office virtual object insertion" />
+            <img src="../../assets/images/projects/aegir/demos/office2-insertion.png" alt="AEGIR office virtual object insertion" />
             <figcaption>Office insertion</figcaption>
           </figure>
         </div>
@@ -257,6 +457,6 @@
         <pre><code></code></pre>
       </section>
     </main>
-    <script src="../../assets/js/project-pages.js?v=20260612-project-trim" defer></script>
+    <script src="../../assets/js/project-pages.js?v=20260615-final-text" defer></script>
   </body>
 </html>

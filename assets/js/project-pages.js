@@ -1,5 +1,7 @@
 (function () {
-  const images = Array.from(document.querySelectorAll(".paper-page figure img"));
+  const images = Array.from(document.querySelectorAll(".paper-page figure img")).filter(
+    (image) => !image.classList.contains("lighting-inset")
+  );
   if (!images.length) return;
 
   const overlay = document.createElement("div");
