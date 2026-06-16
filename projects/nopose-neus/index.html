@@ -11,10 +11,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../assets/css/minimalist.css?v=20260615-final-text" />
+    <link rel="stylesheet" href="../../assets/css/minimalist.css?v=20260616-figure-pass" />
     <link rel="icon" type="image/svg+xml" href="../../assets/images/icon.svg" />
   </head>
-  <body class="paper-page">
+  <body class="paper-page nopose-page">
     <main class="paper-shell">
       <nav class="paper-topline">
         <a href="../../"><i class="fas fa-home" aria-hidden="true"></i> Mohamed Shawky Sabae</a>
@@ -22,7 +22,7 @@
       </nav>
 
       <header class="paper-header">
-        <h1>NoPose-NeuS: Jointly Optimizing Camera Poses with Neural Implicit Surfaces</h1>
+        <h1><strong>NoPose-NeuS</strong>: Jointly Optimizing Camera Poses with Neural Implicit Surfaces</h1>
         <p class="paper-authors">
           <strong class="author-self">Mohamed Shawky Sabae</strong>,
           <a class="author-link" href="https://scholar.google.com/citations?user=i1qvgx4AAAAJ&hl=en" target="_blank" rel="noopener">Hoda Anis Baraka</a>,
@@ -42,27 +42,25 @@
       <figure class="paper-figure hero-figure">
         <img src="../../assets/images/projects/nopose-neus/architecture.png" alt="NoPose-NeuS architecture diagram" />
         <figcaption>
-          NoPose-NeuS jointly optimizes camera poses, neural implicit geometry, and appearance from pose-uncertain multi-view images.
+          <strong>NoPose-NeuS</strong> jointly optimizes camera poses, neural implicit geometry, and appearance from pose-uncertain multi-view images.
         </figcaption>
       </figure>
 
       <section id="abstract">
         <h2>Abstract</h2>
         <p>
-          Neural implicit surface methods can recover difficult geometry, including thin structures
-          and non-Lambertian surfaces, but they usually assume accurate camera parameters. NoPose-NeuS
-          relaxes that assumption by extending NeuS to optimize camera poses together with the
-          geometry and color networks.
+          Neural implicit surface methods can recover challenging geometry, including thin structures and non-Lambertian surfaces,
+          but they typically require accurate camera parameters. <strong>NoPose-NeuS</strong> relaxes this assumption by extending
+          NeuS to optimize camera poses together with geometry and appearance.
         </p>
         <p>
-          NoPose-NeuS represents camera poses with an MLP and adds multi-view feature consistency plus
-          rendered depth supervision. These constraints help the method estimate camera poses while
-          preserving high-quality reconstructed surfaces.
+          <strong>NoPose-NeuS</strong> represents camera poses with an MLP and adds multi-view feature consistency plus rendered-depth supervision.
+          These constraints help recover camera poses while preserving high-quality reconstructed surfaces.
         </p>
       </section>
 
       <section id="method">
-        <h2>Method</h2>
+        <h2>Method Overview</h2>
         <div class="method-cards">
           <article>
             <h3>Joint Optimization</h3>
@@ -91,12 +89,13 @@
       <section id="object-results">
         <h2>Object-Level Results</h2>
         <p>
-          NoPose-NeuS preserves competitive surface quality while estimating
-          camera poses, and it outperforms COLMAP on most DTU Chamfer-distance comparisons.
+          <strong>NoPose-NeuS</strong> preserves competitive surface quality while estimating camera poses, and it outperforms
+          COLMAP on most DTU Chamfer-distance comparisons.
         </p>
-        <div class="comparison-stack">
+        <figure class="paper-figure table-figure result-figure">
+          <div class="comparison-stack">
           <article class="comparison-set">
-            <h3>DTU Scan 24</h3>
+            <h4>DTU Scan 24</h4>
             <div class="comparison-grid four-col">
               <figure>
                 <img src="../../assets/images/projects/nopose-neus/results/dtu/scan24/rgb.png" alt="DTU scan 24 reference RGB" />
@@ -118,7 +117,7 @@
           </article>
 
           <article class="comparison-set">
-            <h3>DTU Scan 37</h3>
+            <h4>DTU Scan 37</h4>
             <div class="comparison-grid four-col">
               <figure>
                 <img src="../../assets/images/projects/nopose-neus/results/dtu/scan37/rgb.png" alt="DTU scan 37 reference RGB" />
@@ -140,7 +139,7 @@
           </article>
 
           <article class="comparison-set">
-            <h3>BMVS Bear</h3>
+            <h4>BMVS Bear</h4>
             <div class="comparison-grid four-col">
               <figure>
                 <img src="../../assets/images/projects/nopose-neus/results/bmvs/bear/rgb.png" alt="BMVS bear reference RGB" />
@@ -162,7 +161,7 @@
           </article>
 
           <article class="comparison-set">
-            <h3>BMVS Dog</h3>
+            <h4>BMVS Dog</h4>
             <div class="comparison-grid four-col">
               <figure>
                 <img src="../../assets/images/projects/nopose-neus/results/bmvs/dog/rgb.png" alt="BMVS dog reference RGB" />
@@ -182,26 +181,34 @@
               </figure>
             </div>
           </article>
-        </div>
+          </div>
+          <figcaption>
+            Object-level reconstruction comparisons on DTU and BMVS. <strong>NoPose-NeuS</strong> estimates camera poses jointly with geometry while preserving surface quality.
+          </figcaption>
+        </figure>
       </section>
 
       <section id="scene-results">
         <h2>Scene-Level Results</h2>
         <p>
-          On larger scenes, the same optimization idea is used to recover surfaces without relying
-          on precomputed accurate camera poses.
+          The same optimization strategy also scales to larger scenes, recovering surfaces without relying on accurate precomputed camera poses.
         </p>
         <h3 class="figure-group-title">ScanNet Scene</h3>
-        <div class="comparison-grid two-col">
-          <figure>
-            <img src="../../assets/images/projects/nopose-neus/results/scannet/nopose-neus.png" alt="ScanNet NoPose-NeuS result" />
-            <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
-          </figure>
-          <figure>
-            <img src="../../assets/images/projects/nopose-neus/results/scannet/monosdf.png" alt="ScanNet MonoSDF result" />
-            <figcaption>MonoSDF</figcaption>
-          </figure>
-        </div>
+        <figure class="paper-figure grouped-figure result-figure">
+          <div class="comparison-grid two-col">
+            <figure>
+              <img src="../../assets/images/projects/nopose-neus/results/scannet/nopose-neus.png" alt="ScanNet NoPose-NeuS result" />
+              <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
+            </figure>
+            <figure>
+              <img src="../../assets/images/projects/nopose-neus/results/scannet/monosdf.png" alt="ScanNet MonoSDF result" />
+              <figcaption>MonoSDF</figcaption>
+            </figure>
+          </div>
+          <figcaption>
+            Scene-level reconstruction comparison on ScanNet, where <strong>NoPose-NeuS</strong> recovers geometry without relying on precomputed accurate poses.
+          </figcaption>
+        </figure>
       </section>
 
       <section id="bibtex">
@@ -219,6 +226,6 @@ url={https://openreview.net/forum?id=TOp8uT3DZ9}
         </div>
       </section>
     </main>
-    <script src="../../assets/js/project-pages.js?v=20260615-final-text" defer></script>
+    <script src="../../assets/js/project-pages.js?v=20260616-figure-pass" defer></script>
   </body>
 </html>
