@@ -643,8 +643,8 @@ h1 {
   font-weight: 700;
 }
 
-.paper-links a,
-.paper-links span {
+.paper-links > a,
+.paper-links > span {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -657,6 +657,22 @@ h1 {
 
 .paper-links .is-disabled {
   color: #9ca3af;
+}
+
+.paper-links .coming-soon {
+  display: inline-flex;
+  align-items: center;
+  min-height: auto;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .paper-figure {
