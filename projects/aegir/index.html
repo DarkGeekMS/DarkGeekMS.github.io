@@ -32,9 +32,9 @@
         <p class="paper-affiliations">
           <i class="fas fa-university" aria-hidden="true"></i> University of T&uuml;bingen
         </p>
-        <p class="paper-venue"><i class="fas fa-award" aria-hidden="true"></i> arXiv preprint, 2026</p>
+        <p class="paper-venue"><i class="fas fa-award" aria-hidden="true"></i> arXiv Preprint, 2026</p>
         <div class="paper-links">
-          <span class="is-disabled"><i class="far fa-file-pdf" aria-hidden="true"></i> Paper</span>
+          <a href="https://arxiv.org/abs/2606.28635" target="_blank" rel="noopener"><i class="far fa-file-pdf" aria-hidden="true"></i> Paper</a>
           <span class="is-disabled"><i class="fas fa-code" aria-hidden="true"></i> Code <span class="coming-soon">Coming soon</span></span>
         </div>
       </header>
@@ -279,7 +279,7 @@
         <figure class="paper-figure table-figure">
           <div class="intrinsic-comparisons">
             <article>
-              <h4>Classroom</h4>
+              <h4>FIPT Real Classroom</h4>
               <div class="matrix-scroll">
                 <table class="intrinsic-table">
                   <thead>
@@ -335,7 +335,63 @@
             </article>
 
             <article>
-              <h4>Livingroom</h4>
+              <h4>FIPT Real Conferenceroom</h4>
+              <div class="matrix-scroll">
+                <table class="intrinsic-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Property</th>
+                      <th scope="col">Reference</th>
+                      <th scope="col"><strong>AEGIR (ours)</strong></th>
+                      <th scope="col">GS-ID</th>
+                      <th scope="col">IRGS</th>
+                      <th scope="col">IRIS</th>
+                      <th scope="col">NeILF++</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Render</th>
+                      <td rowspan="4" class="reference-cell">
+                        <figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/gt.png" alt="Conference Room ground-truth RGB reference" /></figure>
+                      </td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/aegir/rgb.png" alt="Conference Room AEGIR render" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/gsid/rgb.png" alt="Conference Room GS-ID render" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/irgs/rgb.png" alt="Conference Room IRGS render" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/iris/rgb.png" alt="Conference Room IRIS render" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/neilfpp/rgb.png" alt="Conference Room NeILF++ render" /></figure></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Albedo</th>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/aegir/albedo.png" alt="Conference Room AEGIR albedo" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/gsid/albedo.png" alt="Conference Room GS-ID albedo" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/irgs/albedo.png" alt="Conference Room IRGS albedo" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/iris/albedo.png" alt="Conference Room IRIS albedo" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/neilfpp/albedo.png" alt="Conference Room NeILF++ albedo" /></figure></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Roughness</th>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/aegir/rough.png" alt="Conference Room AEGIR roughness" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/gsid/rough.png" alt="Conference Room GS-ID roughness" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/irgs/rough.png" alt="Conference Room IRGS roughness" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/iris/rough.png" alt="Conference Room IRIS roughness" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/neilfpp/rough.png" alt="Conference Room NeILF++ roughness" /></figure></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Metallic</th>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/aegir/metal.png" alt="Conference Room AEGIR metallic" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/gsid/metal.png" alt="Conference Room GS-ID metallic" /></figure></td>
+                      <td class="na-cell">N/A</td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/iris/metal.png" alt="Conference Room IRIS metallic" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/conferenceroom/neilfpp/metal.png" alt="Conference Room NeILF++ metallic" /></figure></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article>
+              <h4>FIPT Synthetic Livingroom</h4>
               <div class="matrix-scroll">
                 <table class="intrinsic-table">
                   <thead>
@@ -391,7 +447,63 @@
             </article>
 
             <article>
-              <h4>Office 4</h4>
+              <h4>Replica Room 0</h4>
+              <div class="matrix-scroll">
+                <table class="intrinsic-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Property</th>
+                      <th scope="col">Reference</th>
+                      <th scope="col"><strong>AEGIR (ours)</strong></th>
+                      <th scope="col">GS-ID</th>
+                      <th scope="col">IRGS</th>
+                      <th scope="col">IRIS</th>
+                      <th scope="col">NeILF++</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Render</th>
+                      <td rowspan="4" class="reference-cell">
+                        <figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/rgb.png" alt="Room 0 ground-truth RGB reference" /></figure>
+                      </td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/aegir/rgb.png" alt="Room 0 AEGIR render" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/gsid/rgb.png" alt="Room 0 GS-ID render" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/irgs/rgb.png" alt="Room 0 IRGS render" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/iris/rgb.png" alt="Room 0 IRIS render" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/neilfpp/rgb.png" alt="Room 0 NeILF++ render" /></figure></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Albedo</th>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/aegir/albedo.png" alt="Room 0 AEGIR albedo" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/gsid/albedo.png" alt="Room 0 GS-ID albedo" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/irgs/albedo.png" alt="Room 0 IRGS albedo" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/iris/albedo.png" alt="Room 0 IRIS albedo" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/neilfpp/albedo.png" alt="Room 0 NeILF++ albedo" /></figure></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Roughness</th>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/aegir/rough.png" alt="Room 0 AEGIR roughness" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/gsid/rough.png" alt="Room 0 GS-ID roughness" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/irgs/rough.png" alt="Room 0 IRGS roughness" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/iris/rough.png" alt="Room 0 IRIS roughness" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/neilfpp/rough.png" alt="Room 0 NeILF++ roughness" /></figure></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Metallic</th>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/aegir/metal.png" alt="Room 0 AEGIR metallic" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/gsid/metal.png" alt="Room 0 GS-ID metallic" /></figure></td>
+                      <td class="na-cell">N/A</td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/iris/metal.png" alt="Room 0 IRIS metallic" /></figure></td>
+                      <td><figure><img src="../../assets/images/projects/aegir/intrinsic-comparison/room0/neilfpp/metal.png" alt="Room 0 NeILF++ metallic" /></figure></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article>
+              <h4>Replica Office 4</h4>
               <div class="matrix-scroll">
                 <table class="intrinsic-table">
                   <thead>
@@ -447,7 +559,7 @@
             </article>
           </div>
           <figcaption>
-            Qualitative intrinsic decomposition on Classroom, Livingroom, and Office 4. Rows show render, albedo, roughness, and metallic outputs. N/A marks properties not produced by a method.
+            Qualitative intrinsic decomposition and novel-view synthesis on FIPT Real Classroom, FIPT Real Conferenceroom, FIPT Synthetic Livingroom, Replica Room 0, and Replica Office 4. Rows show render, albedo, roughness, and metallic outputs. N/A marks properties not produced by a method.
           </figcaption>
         </figure>
       </section>
@@ -506,13 +618,24 @@
 
       <section id="bibtex">
         <h2>BibTeX</h2>
-        <pre><code></code></pre>
+        <div class="bibtex-card">
+          <button class="copy-bibtex" type="button"><i class="far fa-copy" aria-hidden="true"></i> Copy</button>
+          <pre><code>@misc{sabae2026aegirmodelingareaemitters,
+      title={AEGIR: Modeling Area Emitters for Indoor Inverse Rendering using Gaussian Splatting}, 
+      author={Mohamed Shawky Sabae and Philipp Langsteiner and Jan-Niklas Dihlmann and Hendrik Lensch},
+      year={2026},
+      eprint={2606.28635},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2606.28635}, 
+}</code></pre>
+        </div>
       </section>
 
       <section id="acknowledgments">
         <h2>Acknowledgments</h2>
         <p>
-          The authors thank the International Max Planck Research School for Intelligent Systems (IMPRS-IS) for supporting Mohamed Shawky Sabae, Philipp Langsteiner, Jan-Niklas Dihlmann.
+          The authors thank the International Max Planck Research School for Intelligent Systems (IMPRS-IS) for supporting Mohamed Shawky Sabae, Philipp Langsteiner, and Jan-Niklas Dihlmann.
         </p>
       </section>
     </main>
