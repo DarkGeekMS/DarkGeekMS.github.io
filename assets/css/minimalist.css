@@ -688,6 +688,32 @@ h1 {
   box-shadow: 0 12px 30px rgba(61, 115, 183, 0.08);
 }
 
+.paper-shell .pipeline-section {
+  max-width: 920px;
+}
+
+.pipeline-stack {
+  display: grid;
+  gap: 20px;
+}
+
+.paper-figure.pipeline-figure {
+  margin: 0;
+}
+
+.pipeline-figure h3 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: 0.96rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.pipeline-figure img {
+  border: 1px solid var(--accent-line);
+  border-radius: 6px;
+}
+
 .paper-figure.video-figure {
   max-width: 920px;
 }
@@ -919,6 +945,58 @@ h1 {
   font-size: 0.84rem;
 }
 
+.publication-versions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.publication-versions article {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.publication-versions .version-meta {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.version-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.version-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 4px 10px;
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  background: rgba(243, 247, 252, 0.82);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.version-links a:hover,
+.version-links a:focus-visible {
+  border-color: var(--accent);
+  color: #ffffff;
+  background: var(--accent);
+  text-decoration: none;
+  outline: none;
+}
+
+.bibtex-title {
+  margin: 16px 0 8px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
 .bibtex-card {
   position: relative;
   overflow: hidden;
@@ -1132,6 +1210,11 @@ h1 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.comparison-grid.six-col {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
 .comparison-grid.two-col {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1218,6 +1301,19 @@ h1 {
   aspect-ratio: 16 / 9;
 }
 
+.comparison-grid.three-col {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.comparison-grid.three-col img {
+  aspect-ratio: 16 / 9;
+}
+
+.comparison-grid.six-col figcaption {
+  font-size: 0.68rem;
+  line-height: 1.25;
+}
+
 .comparison-grid.landscape-grid img {
   aspect-ratio: 16 / 9;
 }
@@ -1227,6 +1323,60 @@ h1 {
   color: var(--muted);
   font-size: 0.78rem;
   text-align: center;
+}
+
+.result-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.result-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--accent-line);
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 0.78rem;
+}
+
+.result-table th,
+.result-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--accent-line);
+  color: var(--soft-ink);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.result-table th {
+  color: var(--ink);
+  background: var(--accent-soft);
+  font-weight: 800;
+}
+
+.result-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.result-table td:not(:first-child),
+.result-table th:not(:first-child) {
+  text-align: center;
+}
+
+.result-table .best {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.result-table .second {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-border);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 .matrix-scroll {
@@ -1619,6 +1769,8 @@ h1 {
   .intrinsic-summary,
   .method-cards,
   .comparison-grid.four-col,
+  .comparison-grid.six-col,
+  .comparison-grid.three-col,
   .comparison-grid.two-col,
   .direct-light-video-grid {
     grid-template-columns: 1fr;

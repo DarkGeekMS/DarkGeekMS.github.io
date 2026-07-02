@@ -31,20 +31,37 @@
         <p class="paper-affiliations">
           <i class="fas fa-university" aria-hidden="true"></i> Faculty of Engineering, Cairo University
         </p>
-        <p class="paper-venue"><i class="fas fa-award" aria-hidden="true"></i> NeurIPS 2023 UniReps Workshop</p>
+        <p class="paper-venue"><i class="fas fa-award" aria-hidden="true"></i> NoPose-NeuS: NeurIPS 2023 UniReps Workshop</p>
+        <p class="paper-venue"><i class="fas fa-award" aria-hidden="true"></i> BA-NeuS: Springer Nature Virtual Reality Journal, 2026</p>
         <div class="paper-links">
-          <a href="https://arxiv.org/abs/2312.15238" target="_blank" rel="noopener"><i class="far fa-file-pdf" aria-hidden="true"></i> Paper</a>
-          <a href="./"><i class="far fa-file-alt" aria-hidden="true"></i> Extended Paper</a>
+          <a href="https://arxiv.org/abs/2312.15238" target="_blank" rel="noopener"><i class="far fa-file-pdf" aria-hidden="true"></i> NoPose-NeuS Paper</a>
+          <a href="https://link.springer.com/article/10.1007/s10055-026-01423-1" target="_blank" rel="noopener"><i class="far fa-file-alt" aria-hidden="true"></i> BA-NeuS Journal Paper</a>
           <a href="https://github.com/DarkGeekMS/bundle-adjusting-neus" target="_blank" rel="noopener"><i class="fas fa-code" aria-hidden="true"></i> Code</a>
         </div>
       </header>
 
-      <figure class="paper-figure hero-figure">
-        <img src="../../assets/images/projects/nopose-neus/architecture.png" alt="NoPose-NeuS architecture diagram" />
-        <figcaption>
-          <strong>NoPose-NeuS</strong> jointly optimizes camera poses, neural implicit geometry, and appearance from pose-uncertain multi-view images.
-        </figcaption>
-      </figure>
+      <section id="pipelines" class="pipeline-section">
+        <h2>Pipeline Overview</h2>
+        <div class="pipeline-stack">
+          <figure class="paper-figure hero-figure pipeline-figure">
+            <h3><strong>NoPose-NeuS</strong> Pipeline</h3>
+            <img src="../../assets/images/projects/nopose-neus/pipelines/nopose-neus-architecture.png" alt="NoPose-NeuS architecture diagram" />
+            <figcaption>
+              <strong>NoPose-NeuS</strong> is the workshop pipeline: it optimizes camera poses together with the neural implicit geometry
+              and appearance networks, forming the pose-estimation foundation that <strong>BA-NeuS</strong> extends.
+            </figcaption>
+          </figure>
+
+          <figure class="paper-figure hero-figure pipeline-figure">
+            <h3><strong>BA-NeuS</strong> Pipeline</h3>
+            <img src="../../assets/images/projects/nopose-neus/pipelines/ba-neus-architecture.png" alt="BA-NeuS architecture diagram" />
+            <figcaption>
+              <strong>BA-NeuS</strong> is the journal extension of <strong>NoPose-NeuS</strong>: it keeps the joint neural surface
+              optimization and adds camera-intrinsics estimation with a multi-view point-cloud alignment constraint.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
 
       <section id="abstract">
         <h2>Abstract</h2>
@@ -56,6 +73,11 @@
         <p>
           <strong>NoPose-NeuS</strong> represents camera poses with an MLP and adds multi-view feature consistency plus rendered-depth supervision.
           These constraints help recover camera poses while preserving high-quality reconstructed surfaces.
+        </p>
+        <p>
+          <strong>BA-NeuS</strong> is the extended journal version of this work. It builds on <strong>NoPose-NeuS</strong> by jointly
+          optimizing camera intrinsics in addition to poses, and by adding a multi-view point-cloud alignment constraint for more stable
+          camera-parameter estimation.
         </p>
       </section>
 
@@ -89,101 +111,475 @@
       <section id="object-results">
         <h2>Object-Level Results</h2>
         <p>
-          <strong>NoPose-NeuS</strong> preserves competitive surface quality while estimating camera poses, and it outperforms
-          COLMAP on most DTU Chamfer-distance comparisons.
+          <strong>BA-NeuS</strong> extends <strong>NoPose-NeuS</strong> by estimating camera intrinsics together with camera poses.
+          On DTU, the journal version gives a modest average Chamfer-distance improvement over <strong>NoPose-NeuS</strong> while
+          remaining comparable to posed-reconstruction baselines such as NeuS and MonoSDF.
         </p>
+
         <figure class="paper-figure table-figure result-figure">
-          <div class="comparison-stack">
-          <article class="comparison-set">
-            <h4>DTU Scan 24</h4>
-            <div class="comparison-grid four-col">
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/dtu/scan24/rgb.png" alt="DTU scan 24 reference RGB" />
-                <figcaption>Reference / GT</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/dtu/scan24/nopose-neus.png" alt="DTU scan 24 NoPose-NeuS result" />
-                <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/dtu/scan24/neus.png" alt="DTU scan 24 NeuS result" />
-                <figcaption>NeuS</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/dtu/scan24/colmap.png" alt="DTU scan 24 COLMAP result" />
-                <figcaption>COLMAP</figcaption>
-              </figure>
-            </div>
-          </article>
-
-          <article class="comparison-set">
-            <h4>DTU Scan 37</h4>
-            <div class="comparison-grid four-col">
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/dtu/scan37/rgb.png" alt="DTU scan 37 reference RGB" />
-                <figcaption>Reference / GT</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/dtu/scan37/nopose-neus.png" alt="DTU scan 37 NoPose-NeuS result" />
-                <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/dtu/scan37/neus.png" alt="DTU scan 37 NeuS result" />
-                <figcaption>NeuS</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/dtu/scan37/colmap.png" alt="DTU scan 37 COLMAP result" />
-                <figcaption>COLMAP</figcaption>
-              </figure>
-            </div>
-          </article>
-
-          <article class="comparison-set">
-            <h4>BMVS Bear</h4>
-            <div class="comparison-grid four-col">
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/bmvs/bear/rgb.png" alt="BMVS bear reference RGB" />
-                <figcaption>Reference / GT</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/bmvs/bear/nopose-neus.png" alt="BMVS bear NoPose-NeuS result" />
-                <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/bmvs/bear/neus.png" alt="BMVS bear NeuS result" />
-                <figcaption>NeuS</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/bmvs/bear/colmap.png" alt="BMVS bear COLMAP result" />
-                <figcaption>COLMAP</figcaption>
-              </figure>
-            </div>
-          </article>
-
-          <article class="comparison-set">
-            <h4>BMVS Dog</h4>
-            <div class="comparison-grid four-col">
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/bmvs/dog/rgb.png" alt="BMVS dog reference RGB" />
-                <figcaption>Reference / GT</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/bmvs/dog/nopose-neus.png" alt="BMVS dog NoPose-NeuS result" />
-                <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/bmvs/dog/neus.png" alt="BMVS dog NeuS result" />
-                <figcaption>NeuS</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/images/projects/nopose-neus/results/bmvs/dog/colmap.png" alt="BMVS dog COLMAP result" />
-                <figcaption>COLMAP</figcaption>
-              </figure>
-            </div>
-          </article>
+          <div class="result-table-scroll">
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Camera Setting</th>
+                  <th>DTU Chamfer ↓</th>
+                  <th>RPE<sub>r</sub> ↓</th>
+                  <th>RPE<sub>t</sub> ↓</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>COLMAP</td>
+                  <td>Estimates cameras</td>
+                  <td>1.36</td>
+                  <td>0.67</td>
+                  <td>0.95</td>
+                </tr>
+                <tr>
+                  <td>NeuS</td>
+                  <td>Uses accurate cameras</td>
+                  <td class="best">0.84</td>
+                  <td>--</td>
+                  <td>--</td>
+                </tr>
+                <tr>
+                  <td>MonoSDF</td>
+                  <td>Uses accurate cameras</td>
+                  <td class="best">0.84</td>
+                  <td>--</td>
+                  <td>--</td>
+                </tr>
+                <tr>
+                  <td><strong>NoPose-NeuS</strong></td>
+                  <td>Optimizes poses</td>
+                  <td>0.89</td>
+                  <td class="second">0.63</td>
+                  <td class="second">0.93</td>
+                </tr>
+                <tr>
+                  <td><strong>BA-NeuS</strong></td>
+                  <td>Optimizes poses and intrinsics</td>
+                  <td class="second">0.86</td>
+                  <td class="best">0.62</td>
+                  <td class="best">0.90</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <figcaption>
-            Object-level reconstruction comparisons on DTU and BMVS. <strong>NoPose-NeuS</strong> estimates camera poses jointly with geometry while preserving surface quality.
+            DTU mean results comparing <strong>NoPose-NeuS</strong>, which optimizes camera poses, with <strong>BA-NeuS</strong>,
+            which extends it by optimizing poses and intrinsics. RPE values compare the methods that estimate camera parameters; lower is better.
+          </figcaption>
+        </figure>
+
+        <h3 class="figure-group-title">DTU Reconstruction Comparisons</h3>
+        <figure class="paper-figure table-figure result-figure">
+          <div class="comparison-stack">
+            <article class="comparison-set">
+              <h4>DTU Scan 24</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan24/rgb.png" alt="DTU scan 24 reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan24/ba-neus.png" alt="DTU scan 24 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan24/np-neus.png" alt="DTU scan 24 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan24/neus.png" alt="DTU scan 24 NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan24/monosdf.png" alt="DTU scan 24 MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan24/colmap.png" alt="DTU scan 24 COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>DTU Scan 37</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan37/rgb.png" alt="DTU scan 37 reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan37/ba-neus.png" alt="DTU scan 37 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan37/np-neus.png" alt="DTU scan 37 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan37/neus.png" alt="DTU scan 37 NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan37/monosdf.png" alt="DTU scan 37 MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan37/colmap.png" alt="DTU scan 37 COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>DTU Scan 55</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan55/rgb.png" alt="DTU scan 55 reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan55/ba-neus.png" alt="DTU scan 55 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan55/np-neus.png" alt="DTU scan 55 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan55/neus.png" alt="DTU scan 55 NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan55/monosdf.png" alt="DTU scan 55 MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan55/colmap.png" alt="DTU scan 55 COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>DTU Scan 65</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan65/rgb.png" alt="DTU scan 65 reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan65/ba-neus.png" alt="DTU scan 65 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan65/np-neus.png" alt="DTU scan 65 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan65/neus.png" alt="DTU scan 65 NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan65/monosdf.png" alt="DTU scan 65 MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan65/colmap.png" alt="DTU scan 65 COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>DTU Scan 63</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan63/rgb.png" alt="DTU scan 63 reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan63/ba-neus.png" alt="DTU scan 63 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan63/np-neus.png" alt="DTU scan 63 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan63/neus.png" alt="DTU scan 63 NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan63/monosdf.png" alt="DTU scan 63 MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan63/colmap.png" alt="DTU scan 63 COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>DTU Scan 106</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan106/rgb.png" alt="DTU scan 106 reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan106/ba-neus.png" alt="DTU scan 106 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan106/np-neus.png" alt="DTU scan 106 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan106/neus.png" alt="DTU scan 106 NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan106/monosdf.png" alt="DTU scan 106 MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan106/colmap.png" alt="DTU scan 106 COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>DTU Scan 118</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan118/rgb.png" alt="DTU scan 118 reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan118/ba-neus.png" alt="DTU scan 118 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan118/np-neus.png" alt="DTU scan 118 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan118/neus.png" alt="DTU scan 118 NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan118/monosdf.png" alt="DTU scan 118 MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/dtu/scan118/colmap.png" alt="DTU scan 118 COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+          </div>
+          <figcaption>
+            DTU surface reconstruction comparisons showing <strong>BA-NeuS</strong> against <strong>NoPose-NeuS</strong> and
+            posed baselines. <strong>BA-NeuS</strong> extends <strong>NoPose-NeuS</strong> by estimating intrinsics in addition to poses,
+            while NeuS and MonoSDF use accurate camera parameters.
+          </figcaption>
+        </figure>
+
+        <h3 class="figure-group-title">BlendedMVS Reconstruction Comparisons</h3>
+        <figure class="paper-figure table-figure result-figure">
+          <div class="comparison-stack">
+            <article class="comparison-set">
+              <h4>Bear</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/bear/rgb.png" alt="BlendedMVS bear reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/bear/ba-neus.png" alt="BlendedMVS bear BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/bear/nopose-neus.png" alt="BlendedMVS bear NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/bear/neus.png" alt="BlendedMVS bear NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/bear/monosdf.png" alt="BlendedMVS bear MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/bear/colmap.png" alt="BlendedMVS bear COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>Clock</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/clock/rgb.png" alt="BlendedMVS clock reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/clock/ba-neus.png" alt="BlendedMVS clock BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/clock/nopose-neus.png" alt="BlendedMVS clock NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/clock/neus.png" alt="BlendedMVS clock NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/clock/monosdf.png" alt="BlendedMVS clock MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/clock/colmap.png" alt="BlendedMVS clock COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>Dog</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/dog/rgb.png" alt="BlendedMVS dog reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/dog/ba-neus.png" alt="BlendedMVS dog BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/dog/nopose-neus.png" alt="BlendedMVS dog NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/dog/neus.png" alt="BlendedMVS dog NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/dog/monosdf.png" alt="BlendedMVS dog MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/dog/colmap.png" alt="BlendedMVS dog COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>Man</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/man/rgb.png" alt="BlendedMVS man reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/man/ba-neus.png" alt="BlendedMVS man BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/man/nopose-neus.png" alt="BlendedMVS man NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/man/neus.png" alt="BlendedMVS man NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/man/monosdf.png" alt="BlendedMVS man MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/man/colmap.png" alt="BlendedMVS man COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>Sculpture</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/sculpture/rgb.png" alt="BlendedMVS sculpture reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/sculpture/ba-neus.png" alt="BlendedMVS sculpture BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/sculpture/nopose-neus.png" alt="BlendedMVS sculpture NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/sculpture/neus.png" alt="BlendedMVS sculpture NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/sculpture/monosdf.png" alt="BlendedMVS sculpture MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/sculpture/colmap.png" alt="BlendedMVS sculpture COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>Stone</h4>
+              <div class="comparison-grid six-col">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/stone/rgb.png" alt="BlendedMVS stone reference RGB" />
+                  <figcaption>Reference</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/stone/ba-neus.png" alt="BlendedMVS stone BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/stone/nopose-neus.png" alt="BlendedMVS stone NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong></figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/stone/neus.png" alt="BlendedMVS stone NeuS result" />
+                  <figcaption>NeuS</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/stone/monosdf.png" alt="BlendedMVS stone MonoSDF result" />
+                  <figcaption>MonoSDF</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/bmvs/stone/colmap.png" alt="BlendedMVS stone COLMAP result" />
+                  <figcaption>COLMAP</figcaption>
+                </figure>
+              </div>
+            </article>
+          </div>
+          <figcaption>
+            BlendedMVS qualitative comparisons showing how <strong>BA-NeuS</strong> changes the pose-only <strong>NoPose-NeuS</strong>
+            reconstruction setting by also estimating camera intrinsics. Ground-truth meshes are not available in this evaluation setup,
+            so these results are shown qualitatively.
           </figcaption>
         </figure>
       </section>
@@ -191,28 +587,60 @@
       <section id="scene-results">
         <h2>Scene-Level Results</h2>
         <p>
-          The same optimization strategy also scales to larger scenes, recovering surfaces without relying on accurate precomputed camera poses.
+          The main practical difference between <strong>BA-NeuS</strong> and <strong>NoPose-NeuS</strong> appears in indoor ScanNet scenes.
+          The point-cloud alignment term gives a more direct geometric signal for long image sequences, though the method can still be sensitive
+          to limited overlap.
         </p>
-        <h3 class="figure-group-title">ScanNet Scene</h3>
+        <h3 class="figure-group-title">ScanNet Indoor Comparisons</h3>
         <figure class="paper-figure grouped-figure result-figure">
-          <div class="comparison-grid two-col">
-            <figure>
-              <img src="../../assets/images/projects/nopose-neus/results/scannet/nopose-neus.png" alt="ScanNet NoPose-NeuS result" />
-              <figcaption><strong>NoPose-NeuS (ours)</strong></figcaption>
-            </figure>
-            <figure>
-              <img src="../../assets/images/projects/nopose-neus/results/scannet/monosdf.png" alt="ScanNet MonoSDF result" />
-              <figcaption>MonoSDF</figcaption>
-            </figure>
+          <div class="comparison-stack">
+            <article class="comparison-set">
+              <h4>ScanNet Scan 3</h4>
+              <div class="comparison-grid three-col landscape-grid">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/scannet/scan3/ba-neus.png" alt="ScanNet scan 3 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong><br />Chamfer 0.287</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/scannet/scan3/monosdf.png" alt="ScanNet scan 3 MonoSDF result" />
+                  <figcaption>MonoSDF<br />Chamfer 0.215</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/scannet/scan3/np-neus.png" alt="ScanNet scan 3 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong><br />Chamfer 0.411</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="comparison-set">
+              <h4>ScanNet Scan 1</h4>
+              <div class="comparison-grid three-col landscape-grid">
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/scannet/scan1/ba-neus.png" alt="ScanNet scan 1 BA-NeuS result" />
+                  <figcaption><strong>BA-NeuS</strong><br />Chamfer 0.377</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/scannet/scan1/monosdf.png" alt="ScanNet scan 1 MonoSDF result" />
+                  <figcaption>MonoSDF<br />Chamfer 0.195</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../assets/images/projects/nopose-neus/results/ba-neus/scannet/scan1/np-neus.png" alt="ScanNet scan 1 NoPose-NeuS result" />
+                  <figcaption><strong>NoPose-NeuS</strong><br />Chamfer 0.591</figcaption>
+                </figure>
+              </div>
+            </article>
           </div>
           <figcaption>
-            Scene-level reconstruction comparison on ScanNet, where <strong>NoPose-NeuS</strong> recovers geometry without relying on precomputed accurate poses.
+            ScanNet indoor scene results comparing <strong>BA-NeuS</strong> with <strong>NoPose-NeuS</strong>. Both estimate
+            camera parameters, while MonoSDF uses accurate camera parameters; the comparison highlights the indoor-scene effect of the
+            <strong>BA-NeuS</strong> point-cloud alignment extension.
           </figcaption>
         </figure>
       </section>
 
       <section id="bibtex">
         <h2>BibTeX</h2>
+        <h3 class="bibtex-title">NoPose-NeuS</h3>
         <div class="bibtex-card">
           <button class="copy-bibtex" type="button"><i class="far fa-copy" aria-hidden="true"></i> Copy</button>
           <pre><code>@inproceedings{
@@ -222,6 +650,27 @@ author={Mohamed Shawky Sabae and Hoda A. Baraka and Mayada Hadhoud},
 booktitle={UniReps:  the First Workshop on Unifying Representations in Neural Models},
 year={2023},
 url={https://openreview.net/forum?id=TOp8uT3DZ9}
+}</code></pre>
+        </div>
+        <h3 class="bibtex-title">BA-NeuS</h3>
+        <div class="bibtex-card">
+          <button class="copy-bibtex" type="button"><i class="far fa-copy" aria-hidden="true"></i> Copy</button>
+          <pre><code>@Article{sabae2026baneus,
+author={Sabae, Mohamed Shawky
+and Baraka, Hoda Anis
+and Hadhoud, Mayada Mansour},
+title={Ba-neus: joint optimization of neural implicit camera and geometry representations for multiview 3D reconstruction},
+journal={Virtual Reality},
+year={2026},
+month={Jul},
+day={01},
+volume={30},
+number={3},
+pages={131},
+abstract={3D reconstruction from multi-view RGB images is important for computer vision and computer graphics applications. Recently, neural surface reconstruction methods have shown promising results for reconstructing detailed 3D geometry in complex scenes. These methods can complement classical multi-view stereo approaches, especially under challenging appearance conditions such as non-Lambertian surfaces and thin structures. A common assumption for these methods is the availability of accurate multi-view camera parameters, which limits their applicability to real-world problems. In this paper, we present bundle-adjusting NeuS (BA-NeuS), a neural surface reconstruction method that integrates the core principle of BA, the joint and simultaneous optimization of 3D structure and camera parameters, directly into the neural reconstruction pipeline. Building on NoPose-NeuS and NeuS, our method performs this BA by jointly optimizing: (1) the implicit neural surface representation (the structure) and (2) the multi-view camera parameters (the motion). To achieve this, we represent the camera parameters, including not only poses but also intrinsics (focal length and optical center), as a multi-layer perceptron. We propose an additional multi-view point cloud alignment loss function that constrains this joint optimization and stabilizes camera-parameter estimation. Our experiments on object-level and scene-level datasets show that the proposed method can reconstruct plausible scene surfaces while estimating camera parameters in the evaluated settings. Compared with baselines that also estimate camera parameters, BA-NeuS gives a modest average improvement on DTU, achieving a mean Chamfer distance of 0.86 compared with 0.89 for NoPose-NeuS, while additionally optimizing camera intrinsics. The code is available at: https://github.com/DarkGeekMS/bundle-adjusting-neus.},
+issn={1434-9957},
+doi={10.1007/s10055-026-01423-1},
+url={https://doi.org/10.1007/s10055-026-01423-1}
 }</code></pre>
         </div>
       </section>
