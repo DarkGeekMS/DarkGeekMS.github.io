@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../assets/css/minimalist.css?v=20260616-aegir-direct-videos" />
+    <link rel="stylesheet" href="../../assets/css/minimalist.css?v=20260707-affiliations" />
     <link rel="icon" type="image/svg+xml" href="../../assets/images/icon.svg" />
   </head>
   <body class="paper-page aegir-page">
@@ -24,13 +24,14 @@
       <header class="paper-header">
         <h1><strong>AEGIR</strong>: Modeling Area Emitters for Indoor Inverse Rendering Using Gaussian Splatting</h1>
         <p class="paper-authors">
-          <strong class="author-self">Mohamed Shawky Sabae</strong>,
-          <a class="author-link" href="https://graphics.cs.uni-tuebingen.de/team/person?name=Philipp%20Langsteiner" target="_blank" rel="noopener">Philipp Langsteiner</a>,
-          <a class="author-link" href="https://graphics.cs.uni-tuebingen.de/team/person?name=Jan-Niklas%20Dihlmann" target="_blank" rel="noopener">Jan-Niklas Dihlmann</a>,
-          <a class="author-link" href="https://graphics.cs.uni-tuebingen.de/team/person?name=Hendrik%20Lensch" target="_blank" rel="noopener">Hendrik Lensch</a>
+          <strong class="author-self">Mohamed Shawky Sabae</strong><sup class="affiliation-mark">1</sup>,
+          <a class="author-link" href="https://graphics.cs.uni-tuebingen.de/team/person?name=Philipp%20Langsteiner" target="_blank" rel="noopener">Philipp Langsteiner</a><sup class="affiliation-mark">1</sup>,
+          <a class="author-link" href="https://graphics.cs.uni-tuebingen.de/team/person?name=Jan-Niklas%20Dihlmann" target="_blank" rel="noopener">Jan-Niklas Dihlmann</a><sup class="affiliation-mark">1</sup>,
+          <a class="author-link" href="https://graphics.cs.uni-tuebingen.de/team/person?name=Hendrik%20Lensch" target="_blank" rel="noopener">Hendrik Lensch</a><sup class="affiliation-mark">1</sup>
         </p>
         <p class="paper-affiliations">
-          <i class="fas fa-university" aria-hidden="true"></i> University of T&uuml;bingen
+          <i class="fas fa-university" aria-hidden="true"></i>
+          <span><sup class="affiliation-mark">1</sup> University of T&uuml;bingen</span>
         </p>
         <p class="paper-venue"><i class="fas fa-award" aria-hidden="true"></i> arXiv Preprint, 2026</p>
         <div class="paper-links">
@@ -190,14 +191,14 @@
         <figure class="paper-figure wide-figure video-figure direct-light-video">
           <div class="direct-light-video-grid">
             <figure>
-              <video controls muted loop playsinline preload="metadata" aria-label="AEGIR bedroom direct-light visualization video">
+              <video controls autoplay muted loop playsinline preload="metadata" aria-label="AEGIR bedroom direct-light visualization video">
                 <source src="../../assets/images/projects/aegir/emitters/bedroom-direct-light.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <figcaption>Bedroom</figcaption>
             </figure>
             <figure>
-              <video controls muted loop playsinline preload="metadata" aria-label="AEGIR Livingroom direct-light visualization video">
+              <video controls autoplay muted loop playsinline preload="metadata" aria-label="AEGIR Livingroom direct-light visualization video">
                 <source src="../../assets/images/projects/aegir/emitters/livingroom-direct-light.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
@@ -612,6 +613,43 @@
           </div>
           <figcaption>
             Scene editing applications across Bedroom, Livingroom, and Office 4.
+          </figcaption>
+        </figure>
+
+        <h3 class="figure-group-title">Interactive Relighting Demos</h3>
+        <figure class="paper-figure gallery-figure video-figure">
+          <div class="demo-video-grid">
+            <figure>
+              <video controls autoplay muted loop playsinline preload="metadata" aria-label="AEGIR bedroom white-light relighting demo">
+                <source src="../../assets/images/projects/aegir/demos/bedroom-white.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <figcaption>FIPT Bedroom white area light</figcaption>
+            </figure>
+            <figure>
+              <video controls autoplay muted loop playsinline preload="metadata" aria-label="AEGIR bedroom yellow-light relighting demo">
+                <source src="../../assets/images/projects/aegir/demos/bedroom-yellow.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <figcaption>FIPT Bedroom yellow area light</figcaption>
+            </figure>
+            <figure>
+              <video controls autoplay muted loop playsinline preload="metadata" aria-label="AEGIR kitchen white-light relighting demo">
+                <source src="../../assets/images/projects/aegir/demos/kitchen-white.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <figcaption>FIPT Kitchen white area light</figcaption>
+            </figure>
+            <figure>
+              <video controls autoplay muted loop playsinline preload="metadata" aria-label="AEGIR purple-light relighting demo">
+                <source src="../../assets/images/projects/aegir/demos/ai_001_004-purple.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <figcaption>Hypersim ai_001_004 Purple area light</figcaption>
+            </figure>
+          </div>
+          <figcaption>
+            Interactive relighting demos using <strong>AEGIR</strong> outputs.
           </figcaption>
         </figure>
       </section>
